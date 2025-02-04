@@ -8,7 +8,7 @@ PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 PRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
 
 # Pobieranie informacji z systemu 
-OS_INFO=$(cat /etc/os-release)
+OS_INFO=$(cat /etc/*-release | egrep "PRETTY_NAME|VERSION_ID" | cut -d = -f 2 | tr -d '"' | tr '\n' ' ')
 
 # Pobieranie uzytkownikow
 
@@ -29,3 +29,8 @@ echo "Operating System: $OS_INFO" >> instance_info.txt
 echo "Users with shell access:" >> instance_info.txt
 echo "$USERS" >> instance_info.txt
 
+# Przesłanie pliku na serwer
+aws s3 cp instance_info.txt s3://applicant-task/r4p17/
+
+# Potwierdzenie wysłania
+echo "Plik został wysłany na serwer."
