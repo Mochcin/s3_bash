@@ -3,10 +3,10 @@
 # Pobranie Instance ID
 INSTANCE_ID=$(curl -s http://169.254.169.254/latest/meta-data/instance-id)
 
-# Pobranie Public IP i Private IP
+# Pobranie Public IP i Private IP oraz Security Groups
 PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 PRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
-
+SECURITY_GROUPS=$(curl -s http://169.254.169.254/latest/meta-data/security-groups)
 # Pobieranie informacji z systemu 
 OS_INFO=$(cat /etc/*-release | egrep "PRETTY_NAME|VERSION_ID" | cut -d = -f 2 | tr -d '"' | tr '\n' ' ')
 
@@ -18,6 +18,7 @@ USERS=$(getent passwd | grep -E 'bash|sh' | cut -d: -f1)
 echo "Pobrano Instance ID: $INSTANCE_ID"
 echo "Pobrano Public IP: $PUBLIC_IP"
 echo "Pobrano Private IP: $PRIVATE_IP"
+echo "Pobrano Security Groups: $SECURITY_GROUPS"
 echo "Pobrano Operating System: $OS_INFO"
 echo "Pobrano Users with shell access: $USERS"
 
@@ -25,6 +26,7 @@ echo "Pobrano Users with shell access: $USERS"
 echo "Instance ID: $INSTANCE_ID" > instance_info.txt
 echo "Public IP: $PUBLIC_IP" >> instance_info.txt
 echo "Private IP: $PRIVATE_IP" >> instance_info.txt
+echo "Security Groups: $SECURITY_GROUPS" >> instance_info.txt
 echo "Operating System: $OS_INFO" >> instance_info.txt
 echo "Users with shell access:" >> instance_info.txt
 echo "$USERS" >> instance_info.txt

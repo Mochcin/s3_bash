@@ -1,6 +1,7 @@
 Instance ID: i-03eaef049e801ee0d
 Public IP: 79.125.60.146
 Private IP: 172.31.22.110
+Security Groups: r4p17-sg
 Operating System: Ubuntu 24.04.1 LTS 24.04 
 Users with shell access:
 root
