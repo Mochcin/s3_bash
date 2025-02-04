@@ -10,7 +10,7 @@ PRIVATE_IP=$(curl -s http://169.254.169.254/latest/meta-data/local-ipv4)
 # Wyswietla zapisane instance na konsoli
 echo "Pobrano Instance ID: $INSTANCE_ID"
 echo "Pobrano Public IP: $PUBLIC_IP"
-echo "Pobraon Private IP: $PRIVATE_IP"
+echo "Pobrano Private IP: $PRIVATE_IP"
 
 # Zapisanie do pliku
 echo "Instance ID: $INSTANCE_ID" > instance_info.txt
